@@ -48,7 +48,7 @@ ANS:
 
    step 5: cd /opt/apache-maven-3.9.8/conf/
    step 6: open the settings.xml
-   step 7: add this <localRepository>/root/mavenlocalrepo/</localRepository>
+   step 7: add this <localRepository>/root/mavenlocalrepo/</localRepository> 54 line
   
 NOTE: Now you can run the mvn clean package : It will again downloading from centrol repo.
 
