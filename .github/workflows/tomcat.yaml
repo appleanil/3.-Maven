@@ -30,6 +30,7 @@ jobs:
 
   Test-Stage:
     runs-on: ubuntu-latest
+    needs: Build-Stage
 
     steps:
       - name: Checkout the Artifact
