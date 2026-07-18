@@ -1,0 +1,50 @@
+name: Tomcat Three stages Deployment
+
+on: workflow_dispatch
+
+jobs:
+  Build-Stage:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout the code
+        uses: actions/checkout@v4
+
+      - name: Install the java and Maven
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 17
+
+      - name: Build the Artifact
+        run: mvn clean package
+
+      - name: Display the Artifact file
+        run: ls -lrth target/
+
+      - name: Upload the Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: maven-war
+          path: target/*.war
+
+  Test-Stage:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout the Artifact
+        uses: actions/checkout@v4
+
+      - name: Install the java and maven
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 17
+
+      - name: Test the Goal
+        run: mvn test package
+
+      - name: Status of test
+        run: echo "Successfull done"
+
+  
